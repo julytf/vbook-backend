@@ -1,4 +1,5 @@
 const AdjustQuery = require('@/utils/AdjustQuery')
+const AppError = require('@/utils/AppError')
 const catchPromise = require('@/utils/catchPromise')
 
 exports.getOne = function (Model) {
@@ -72,6 +73,14 @@ exports.deleteOne = function (Model) {
 
     if (!rs.deletedCount) throw new AppError('No document found!', 404)
 
+    // const doc = await Model.findOne({ id: req.params.id })
+
+    // if (!doc) throw new AppError('No document found!', 404)
+
+    // doc.deletedAt = new Date()
+
+    // await doc.save()
+    
     return res.status(204).send()
   })
 }

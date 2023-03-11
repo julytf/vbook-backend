@@ -1,13 +1,13 @@
 const { Schema, model } = require('mongoose')
 
 const saveSchema = new Schema({
-  userId: {
+  user: {
     required: true,
     type: Schema.ObjectId,
     ref: "User",
     index: true
   },
-  bookId: {
+  book: {
     required: true,
     type: Schema.ObjectId,
     ref: "Book"

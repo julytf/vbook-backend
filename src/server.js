@@ -10,9 +10,8 @@ let server
 
 DB.connect()
   .then(() => DB.init())
-  .then(
-    () =>
-      (server = app.listen(port, () => {
-        console.log(`App listening on port ${port}`)
-      }))
-  )
+  .then(() => {
+    server = app.listen(port, () => {
+      console.log(`App listening on port ${port}`)
+    })
+  })

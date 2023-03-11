@@ -76,15 +76,15 @@ const bookSchema = new Schema({
     type: String,
     enum: ['HARD_COVER', 'PAPER_BACK'],
   },
-  authorId: {
+  author: {
     type: Schema.ObjectId,
     ref: "Author"
   },
-  publisherId: {
+  publisher: {
     type: Schema.ObjectId,
     ref: "Publisher"
   },
   images: [bookImageSchema],
-})
+}, { timestamps: true })
 
 module.exports = model('Book', bookSchema)

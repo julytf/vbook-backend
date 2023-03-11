@@ -21,6 +21,6 @@ const couponSchema = new Schema({
     type: Date,
     default: () => new Date(Date.now() + 7*24*60*60*1000)
   },
-})
+}, { timestamps: true })
 
 module.exports = model('Coupon', couponSchema)

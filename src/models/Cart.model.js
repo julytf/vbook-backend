@@ -1,24 +1,24 @@
 const { Schema, model } = require('mongoose')
 
 const cartDetailSchema = new Schema({
-  bookId: {
+  book: {
     type: Schema.ObjectId,
-    required: true,
     ref: 'Book',
+    required: true,
   },
   quantity: {
     type: Number,
     required: true,
-    min: 0,
+    min: 1,
     max: 99,
   },
 })
 
 const cartSchema = new Schema({
-  userId: {
+  user: {
     type: Schema.ObjectId,
-    required: true,
     ref: 'User',
+    required: true,
     index: true,
   },
   details: [cartDetailSchema]

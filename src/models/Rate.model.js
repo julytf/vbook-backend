@@ -1,12 +1,12 @@
 const { Schema, model } = require('mongoose')
 
 const rateSchema = new Schema({
-  userId: {
+  user: {
     required: true,
     type: Schema.ObjectId,
     ref: "User"
   },
-  bookId: {
+  book: {
     required: true,
     type: Schema.ObjectId,
     ref: "Book"
@@ -20,8 +20,8 @@ const rateSchema = new Schema({
   comment: {
     type: String,
   },
-})
+}, { timestamps: true })
 
-rateSchema.index({ userId: 1, bookId: 1})
+rateSchema.index({ user: 1, book: 1})
 
 module.exports = model("Rate", rateSchema)
