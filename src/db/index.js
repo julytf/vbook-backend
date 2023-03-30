@@ -4,12 +4,11 @@ const mongoose = require('mongoose')
 mongoose.set('strictQuery', true)
 
 const DB_string = process.env.MONGO_STRING.replace(
-  '<user>',
-  process.env.MONGO_USER
+  '<username>',
+  process.env.MONGO_USERNAME
 )
   .replace('<password>', process.env.MONGO_PASSWORD)
   .replace('<database>', process.env.MONGO_DATABASE)
-
 exports.connect = () =>
   mongoose
     .connect(DB_string, {})

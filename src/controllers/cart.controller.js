@@ -5,8 +5,10 @@ const catchPromise = require('@/utils/catchPromise')
 const jwt = require('jsonwebtoken')
 
 exports.getCart = catchPromise(async function (req, res, next) {
-  const cart = await Cart.findOne({ userId: req.user._id })
+  const cart = await Cart.findOne({ userId: req.user._id }).populate('details.book')
   const cartDetails = cart?.details || []
+  // console.log(req.user._id, cart, cartDetails)
+
   return res.status(201).json({
     status: 'success',
     result: cartDetails.length,
