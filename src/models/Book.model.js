@@ -5,11 +5,6 @@ const bookImageSchema = new Schema({
     type: Number,
     required: true,
   },
-  bookId: {
-    type: Schema.ObjectId,
-    ref: 'Book',
-    required: true,
-  },
   file: {
     type: String,
     required: true,
@@ -86,5 +81,9 @@ const bookSchema = new Schema({
   },
   images: [bookImageSchema],
 }, { timestamps: true })
+
+// bookSchema.method('completeImagesUrl', function (host) {
+//   this.images.map(image => `${host}${image}`)
+// })
 
 module.exports = model('Book', bookSchema)

@@ -1,4 +1,5 @@
 const AppError = require('@/utils/AppError')
+const os = require('os')
 
 const router = require('express').Router()
 
@@ -6,6 +7,7 @@ router.get('/', function (req, res, next) {
   res.status(200).json({
     status: 'success',
     message: `welcome to ${process.env.APP_NAME} API!`,
+    // test: req.headers
   })
 })
 

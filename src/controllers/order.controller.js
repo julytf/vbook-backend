@@ -26,7 +26,7 @@ exports.buyOne = catchPromise(async function (req, res, next) {
   res.status(200).json({
     status: 'success',
     data: {
-      order
+      doc: order
     }
   })
 })
@@ -49,7 +49,7 @@ exports.buyFromCart = catchPromise(async function (req, res, next) {
   res.status(200).json({
     status: 'success',
     data: {
-      order
+      doc: order
     }
   })
 })
