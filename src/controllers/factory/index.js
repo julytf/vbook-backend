@@ -19,6 +19,27 @@ exports.getOne = function (Model) {
 // TODO: filter, sort, limitfields, paginate
 exports.getAll = function (Model) {
   return catchPromise(async function (req, res, next) {
+    const query = Model.find()
+    const docs = await query
+
+    if (!docs) throw new AppError('No document found!', 404)
+
+    // docs.forEach(doc => doc?.completeImagesUrl())
+
+    const count = Model.count()
+
+    return res.status(200).json({
+      status: 'success',
+      result: docs.length,
+      data: {
+        docs,
+      },
+    })
+  })
+}
+
+exports.getAllPaginate = function (Model) {
+  return catchPromise(async function (req, res, next) {
     const { sort = false, page = 1, perPage = 12, q = '' } = req.query
 
     const query = new AdjustQuery(Model.find()).nameFilter(q).paginate(page, perPage).query
@@ -62,6 +83,7 @@ exports.updateOne = function (Model) {
       new: true,
       runValidators: true,
     })
+    console.log(req.body);
 
     if (!doc) throw new AppError('No document found!', 404)
 

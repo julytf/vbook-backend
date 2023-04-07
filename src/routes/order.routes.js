@@ -3,6 +3,7 @@ const orderController = require("@/controllers/order.controller")
 const auth = require("@/middlewares/auth.middleware")
 
 router.route("/").get(orderController.index)
+router.route("/getAll").get(orderController.getAll)
 
 router.route("/buy-one").post(auth, orderController.buyOne)
 router.route("/buy-from-cart").post(auth, orderController.buyFromCart)

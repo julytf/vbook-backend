@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose')
 const addressSchema = require('./schemas/address.schema')
+const { statusEnum } = require('@/enums/Order')
 // const orderDetailSchema = require('./schemas/orderDetail.schema')
 
 const orderDetailSchema = new Schema({
@@ -30,9 +31,9 @@ const orderSchema = new Schema(
     // },
     status: {
       type: String,
-      enum: ['PENDING', 'APPROVED', "REJECTED", 'SHIPPING', 'COMPLETED', 'CANCELED'],
+      enum: statusEnum,
       required: true,
-      default: 'PENDING',
+      default: statusEnum.PENDING,
     },
     couponId: {
       type: Schema.ObjectId,

@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose')
 
+const {languageEnum, statusEnum, formEnum} = require('@/enums/Book')
+
 const bookImageSchema = new Schema({
   order: {
     type: Number,
@@ -20,7 +22,7 @@ const bookSchema = new Schema({
   },
   language: {
     type: String,
-    enum: ['VN', 'EN', 'CN', 'JP', 'KR'],
+    enum: languageEnum,
   },
   description: {
     type: String,
@@ -32,9 +34,9 @@ const bookSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['AVAILABLE', 'HIDDEN', 'STOP_SELLING'],
+    enum: statusEnum,
     required: true,
-    default: 'HIDDEN',
+    default: statusEnum.HIDDEN,
   },
   price: {
     type: Number,
@@ -69,7 +71,7 @@ const bookSchema = new Schema({
   },
   form: {
     type: String,
-    enum: ['HARD_COVER', 'PAPER_BACK'],
+    enum: formEnum,
   },
   author: {
     type: Schema.ObjectId,
@@ -85,5 +87,9 @@ const bookSchema = new Schema({
 // bookSchema.method('completeImagesUrl', function (host) {
 //   this.images.map(image => `${host}${image}`)
 // })
+
+bookSchema.pre(/^find/, function () {
+  this.populate(['author','publisher'])
+})
 
 module.exports = model('Book', bookSchema)

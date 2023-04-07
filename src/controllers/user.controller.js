@@ -4,7 +4,9 @@ const factory = require('./factory')
 
 const Model = User
 
-exports.index = factory.getAll(Model)
+exports.index = factory.getAllPaginate(Model)
+
+exports.getAll = factory.getAll(Model)
 
 exports.getOne = factory.getOne(Model)
 
