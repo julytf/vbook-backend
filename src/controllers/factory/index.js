@@ -99,7 +99,8 @@ exports.updateOne = function (Model) {
 
 exports.deleteOne = function (Model) {
   return catchPromise(async function (req, res, next) {
-    const rs = await Model.deleteOne({ id: req.params.id })
+    const rs = await Model.deleteOne({ _id: req.params.id })
+    console.log(req.params.id);
 
     if (!rs.deletedCount) throw new AppError('No document found!', 404)
 

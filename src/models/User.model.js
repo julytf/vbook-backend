@@ -1,4 +1,4 @@
-const { genderEnum, statusEnum } = require('@/enums/User')
+const { genderEnum, statusEnum, roleEnum } = require('@/enums/User')
 const { Schema, model } = require('mongoose')
 
 const userSchema = new Schema(
@@ -49,6 +49,8 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
+      enum: roleEnum,
+      default: roleEnum.USER,
     },
   },
   { timestamps: true }
