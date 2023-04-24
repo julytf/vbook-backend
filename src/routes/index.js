@@ -7,6 +7,15 @@ router.get('/', function (req, res, next) {
   res.status(200).json({
     status: 'success',
     message: `welcome to ${process.env.APP_NAME} API!`,
+    data: req.body
+    // test: req.headers
+  })
+})
+router.post('/', function (req, res, next) {
+  res.status(200).json({
+    status: 'success',
+    message: `welcome to ${process.env.APP_NAME} API!`,
+    data: req.body
     // test: req.headers
   })
 })

@@ -1,5 +1,6 @@
 const { genderEnum, statusEnum, roleEnum } = require('@/enums/User')
 const { Schema, model } = require('mongoose')
+const addressSchema = require('./schemas/address.schema')
 
 const userSchema = new Schema(
   {
@@ -32,6 +33,9 @@ const userSchema = new Schema(
       enum: genderEnum,
       required: true,
     },
+    birthday: {
+      type: Date,
+    },
     phoneNumber: {
       type: String,
       unique: true,
@@ -52,6 +56,7 @@ const userSchema = new Schema(
       enum: roleEnum,
       default: roleEnum.USER,
     },
+    address: addressSchema,
   },
   { timestamps: true }
 )
