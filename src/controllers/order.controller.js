@@ -28,20 +28,18 @@ exports.buyOne = catchPromise(async function (req, res, next) {
   res.status(200).json({
     status: 'success',
     data: {
-      doc: order
-    }
+      doc: order,
+    },
   })
 })
 
 exports.buyFromCart = catchPromise(async function (req, res, next) {
-  const cart = await Cart.findOne({ userId: req.user._id }).populate(
-    'details.book'
-  )
-
+  const cart = await Cart.findOne({ userId: req.user._id }).populate('details.book')
   const order = new Order({
     user: req.user._id,
     details: cart.details,
-    address: req.user.address,
+    address: req.body.address,
+    note: req.body.note,
   })
   await order.save()
 
@@ -51,7 +49,7 @@ exports.buyFromCart = catchPromise(async function (req, res, next) {
   res.status(200).json({
     status: 'success',
     data: {
-      doc: order
-    }
+      doc: order,
+    },
   })
 })

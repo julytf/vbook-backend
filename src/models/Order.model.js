@@ -41,6 +41,10 @@ const orderSchema = new Schema(
     },
     address: addressSchema,
     details: [orderDetailSchema],
+    note: {
+      type: String,
+      maxLength: 500,
+    }
   },
   { timestamps: true }
 )

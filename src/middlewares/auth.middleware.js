@@ -3,7 +3,6 @@ const AppError = require('@/utils/AppError')
 const jwt = require('jsonwebtoken')
 
 async function auth(req, res, next) {
-
   const token = req.headers?.authorization?.replace('Bearer ', '') || req.cookies.jwt
 
   if (!token) return next(new AppError('Unauthorized!', 401))
@@ -15,6 +14,7 @@ async function auth(req, res, next) {
     return next(err)
   }
   const user = await User.findById(decoded._id).select('+password')
+  console.log('auth', user._id)
 
   if (!user) return next(new AppError('Unauthorized!', 401))
 

@@ -2,28 +2,31 @@ const { Schema, model } = require('mongoose')
 
 const addressSchema = new Schema({
   fullName: {
-    required: true,
     type: String,
+    required: true,
   },
   phoneNumber: {
-    required: true,
     type: String,
+    required: true,
   },
   city: {
-    required: true,
     type: String,
+    required: true,
+    maxLength: 2,
   },
   provine: {
-    required: true,
     type: String,
+    required: true,
+    maxLength: 3,
   },
   district: {
-    required: true,
     type: String,
+    required: true,
+    maxLength: 5,
   },
   address: {
-    required: true,
     type: String,
+    required: true,
   },
   address2: {
     type: String,
