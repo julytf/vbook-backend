@@ -5,6 +5,7 @@ const auth = require("@/middlewares/auth.middleware")
 router.use(auth)
 
 router.route("/").get(orderController.index)
+router.route("/my-orders").get(orderController.myOrders)
 router.route("/get-all").get(orderController.getAll)
 
 router.route("/buy-one").post(auth, orderController.buyOne)

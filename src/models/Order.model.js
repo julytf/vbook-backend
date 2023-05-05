@@ -50,7 +50,7 @@ const orderSchema = new Schema(
 )
 
 orderSchema.pre(/^find/, function() {
-  this.populate('details.book')
+  this.populate(['user','details.book'])
 })
 
 module.exports = model('Order', orderSchema)

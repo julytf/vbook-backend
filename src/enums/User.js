@@ -8,7 +8,7 @@ exports.statusEnum = {
   BANNED: 'BANNED',
 }
 exports.roleEnum = {
-  SUPER_ADMIN: 'SUPER_ADMIN',
-  ADMIN: 'ADMIN',
   USER: 'USER',
+  ADMIN: 'ADMIN',
+  SUPER_ADMIN: 'SUPER_ADMIN',
 }

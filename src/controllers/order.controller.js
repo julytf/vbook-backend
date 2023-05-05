@@ -7,7 +7,9 @@ const AppError = require('@/utils/AppError')
 
 const Model = Order
 
-exports.index = catchPromise(async function (req, res, next) {
+exports.index = factory.getAllPaginate(Model)
+
+exports.myOrders = catchPromise(async function (req, res, next) {
   const userId = req.params.userId || req.user._id
 
   const orders = await Order.find({ user: userId }).populate(['details.book'])
