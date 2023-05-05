@@ -2,7 +2,7 @@ const router = require("express").Router()
 const authorController = require("@/controllers/author.controller")
 
 router.route("/").get(authorController.index)
-router.route("/get_all").get(authorController.getAll)
+router.route("/get-all").get(authorController.getAll)
 router.route("/").post(authorController.createOne)
 router.route("/:id").get(authorController.getOne)
 router.route("/:id").patch(authorController.updateOne)

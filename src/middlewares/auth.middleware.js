@@ -3,6 +3,8 @@ const AppError = require('@/utils/AppError')
 const jwt = require('jsonwebtoken')
 
 async function auth(req, res, next) {
+  if (req.user) return next()
+
   const token = req.headers?.authorization?.replace('Bearer ', '') || req.cookies.jwt
 
   if (!token) return next(new AppError('Unauthorized!', 401))

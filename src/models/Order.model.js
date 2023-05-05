@@ -49,4 +49,8 @@ const orderSchema = new Schema(
   { timestamps: true }
 )
 
+orderSchema.pre(/^find/, function() {
+  this.populate('details.book')
+})
+
 module.exports = model('Order', orderSchema)

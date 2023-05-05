@@ -11,6 +11,7 @@ router.use(auth)
 
 router.route('/me').get(authController.getMe)
 router.route('/me').patch(authController.updateMe)
+router.route('/me/change-password').post(authController.changePassword)
 router.route('/me').delete(authController.deleteMe)
 
 module.exports = router

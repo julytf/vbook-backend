@@ -1,16 +1,19 @@
-const router = require("express").Router()
+const router = require("express").Router({ mergeParams: true })
 const orderController = require("@/controllers/order.controller")
 const auth = require("@/middlewares/auth.middleware")
 
-router.route("/").get(orderController.index)
-router.route("/get_all").get(orderController.getAll)
+router.use(auth)
 
-router.route("/buy_ne").post(auth, orderController.buyOne)
-router.route("/buy_from_cart").post(auth, orderController.buyFromCart)
+router.route("/").get(orderController.index)
+router.route("/get-all").get(orderController.getAll)
+
+router.route("/buy-one").post(auth, orderController.buyOne)
+router.route("/buy-from-cart").post(auth, orderController.buyFromCart)
 
 // router.route("/").post(orderController.createOne)
 router.route("/:id").get(orderController.getOne)
 router.route("/:id").patch(orderController.updateOne)
 router.route("/:id").delete(orderController.deleteOne)
+router.route("/:orderId/cancel-order").get(orderController.cancelOrder)
 
 module.exports = router
