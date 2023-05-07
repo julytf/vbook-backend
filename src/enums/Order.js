@@ -6,3 +6,8 @@ exports.statusEnum = {
   COMPLETED: 'COMPLETED',
   CANCELED: 'CANCELED',
 }
+
+exports.paymentMethodEnum = {
+  COD: 'COD',
+  CARD: 'CARD',
+}

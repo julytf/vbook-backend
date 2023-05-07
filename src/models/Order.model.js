@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 const addressSchema = require('./schemas/address.schema')
-const { statusEnum } = require('@/enums/Order')
+const { statusEnum, paymentMethodEnum } = require('@/enums/Order')
 // const orderDetailSchema = require('./schemas/orderDetail.schema')
 
 const orderDetailSchema = new Schema({
@@ -39,18 +39,34 @@ const orderSchema = new Schema(
       type: Schema.ObjectId,
       ref: 'Coupon',
     },
+    paymentMethod: {
+      type: String,
+      enum: paymentMethodEnum,
+      default: paymentMethodEnum.COD,
+    },
+
+    payment: {
+      id: { type: String },
+      paid: {
+        type: Boolean,
+        default: false,
+      },
+      url: {
+        type: String,
+      },
+    },
     address: addressSchema,
     details: [orderDetailSchema],
     note: {
       type: String,
       maxLength: 500,
-    }
+    },
   },
   { timestamps: true }
 )
 
-orderSchema.pre(/^find/, function() {
-  this.populate(['user','details.book'])
+orderSchema.pre(/^find/, function () {
+  this.populate(['user', 'details.book'])
 })
 
 module.exports = model('Order', orderSchema)
