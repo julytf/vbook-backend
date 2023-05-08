@@ -4,6 +4,8 @@ const addressSchema = new Schema({
   fullName: {
     type: String,
     required: true,
+    minLength: 10,
+    maxLength: 50,
   },
   phoneNumber: {
     type: String,
