@@ -11,6 +11,10 @@ class AdjustQuery {
     this.query.skip(skip).limit(perPage)
     return this
   }
+  sort(cri) {
+    this.query.sort(cri)
+    return this
+  }
 }
 
 module.exports = AdjustQuery

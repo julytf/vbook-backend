@@ -12,18 +12,18 @@ exports.getAll = factory.getAll(Model)
 exports.getOne = factory.getOne(Model)
 
 exports.createOne = catchPromise(async function (req, res, next) {
-  const doc = await Book.create(req.body)
+  const book = await Book.create(req.body)
 
   if (req.files.length > 0) {
     book.images.forEach((image) => fs.unlink(image.file, () => {}))
     book.images = req.files.map((file, i) => ({ order: i + 1, file: file.path }))
     await book.save()
   }
-  
+
   res.status(201).json({
     status: 'success',
     data: {
-      doc,
+      doc: book,
     },
   })
 })

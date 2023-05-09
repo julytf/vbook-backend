@@ -42,7 +42,7 @@ exports.getAllPaginate = function (Model) {
   return catchPromise(async function (req, res, next) {
     const { sort = false, page = 1, perPage = 12, q = '' } = req.query
 
-    const query = new AdjustQuery(Model.find()).nameFilter(q).paginate(page, perPage).query
+    const query = new AdjustQuery(Model.find()).nameFilter(q).paginate(page, perPage).sort('-createdAt').query
     // console.log(q)
     const docs = await query
 
